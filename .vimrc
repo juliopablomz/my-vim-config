@@ -1,48 +1,69 @@
-set nocompatible " Remove VI compatibility.
-
-" Using 256 colors when available.
-if has("termguicolors")
-	set termguicolors
+" ---------------------------------------------------------
+call plug#begin()
+Plug 'sheerun/vim-polyglot'
+call plug#end()
+" ---------------------------------------------------------
+if has('termguicolors')
+  set termguicolors
 else
-	set t_Co=256
+  set t_Co=256
 endif
-
-" Enabling plugins and indentation based on file type.
-filetype plugin indent on
-
-set encoding=utf-8 " Sets the character encoding used inside Vim.
-
-" SWAG
+" ---------------------------------------------------------
+filetype indent plugin on
 syntax on
-colorscheme gruber
+set title
+set encoding=utf-8
+set backspace=indent,eol,start
+set noerrorbells
+set confirm
+" set hidden
+set splitbelow
+set splitright
+" set mouse=a
+" ---------------------------------------------------------
+set path=.,**
+set noswapfile
+set nobackup
+set undodir=~/.vim/undodir
+set undofile
+" ---------------------------------------------------------
 set number
 set relativenumber
-
-" Set 'shift width' and 'tab width'.
-set shiftwidth=2
+set scrolloff=2
+set cursorline
+" ---------------------------------------------------------
+set nowrap
+set linebreak
+set nolist 
+set listchars=tab:>-,space:•,trail:◂,eol:⤶
+" ---------------------------------------------------------
+set autoindent
+set smartindent
+" ---------------------------------------------------------
+set expandtab
 set tabstop=2
-
-set expandtab " Use space characters instead of tabs.
-
-set nobackup " Do not save backup files.
-
-set scrolloff=4 " Do not let cursor scroll below or above N number of lines when scrolling.
-set nowrap " Do not wrap lines.
-
-set incsearch " While searching though a file incrementally highlight matching characters as you type.
-set ignorecase " Ignore capital letters during search.
-
-" Override the ignorecase option if searching for capital letters.
-" This will allow you to search specifically for capital letters.
+set softtabstop=2
+set shiftwidth=2
+" ---------------------------------------------------------
+set ignorecase
 set smartcase
+set incsearch
+set hls
+let @/='' " reset 'hls' in new sections.
+" ---------------------------------------------------------
+set completeopt=menuone,longest
+set shortmess+=c
+" ---------------------------------------------------------
+set wildmenu
+set wildmode=longest,full
+set wildoptions=pum
+" ---------------------------------------------------------
+colorscheme habamax
+" ---------------------------------------------------------
+set laststatus=0
 
-set showcmd " Show partial command you type in the last line of the screen.
-set showmode " Show the mode you are on the last line.
-set showmatch " Show matching words during a search.
+hi Normal guibg=NONE ctermbg=NONE " transparent background.
+hi Comment cterm=italic gui=italic " italic comments
 
-set hlsearch " Use highlighting when doing a search.
-
-set history=1000 " Set the commands to save in history default number is 20.
-
-set path=.,/usr/include/**,** " This is a list of directories which will be searched when using the
-	                            " |gf|, [f, ]f, ^Wf, |:find|, |:sfind|, |:tabfind| and other commands,
+hi VertSplit ctermbg=NONE guibg=NONE
+" ---------------------------------------------------------
